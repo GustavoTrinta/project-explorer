@@ -34,7 +34,7 @@ function Page() {
             >
               <div
                 className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-primary-foreground"
-                style={{ backgroundColor: v.empresa.cor_avatar ?? "#1a1a2e" }}
+                style={{ backgroundColor: "#1a1a2e" }}
               >
                 <Building2 className="h-5 w-5" />
               </div>
