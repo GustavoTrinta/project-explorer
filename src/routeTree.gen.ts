@@ -17,6 +17,14 @@ import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedPortalRouteImport } from './routes/_authenticated/portal'
 import { Route as AuthenticatedInternoRouteImport } from './routes/_authenticated/interno'
+import { Route as AuthenticatedPortalObrigacoesRouteImport } from './routes/_authenticated/portal/obrigacoes'
+import { Route as AuthenticatedPortalMensagensRouteImport } from './routes/_authenticated/portal/mensagens'
+import { Route as AuthenticatedPortalInicioRouteImport } from './routes/_authenticated/portal/inicio'
+import { Route as AuthenticatedPortalDocumentosRouteImport } from './routes/_authenticated/portal/documentos'
+import { Route as AuthenticatedInternoTarefasRouteImport } from './routes/_authenticated/interno/tarefas'
+import { Route as AuthenticatedInternoMensagensRouteImport } from './routes/_authenticated/interno/mensagens'
+import { Route as AuthenticatedInternoDashboardRouteImport } from './routes/_authenticated/interno/dashboard'
+import { Route as AuthenticatedInternoClientesRouteImport } from './routes/_authenticated/interno/clientes'
 
 const SelecionarEmpresaRoute = SelecionarEmpresaRouteImport.update({
   id: '/selecionar-empresa',
@@ -57,6 +65,54 @@ const AuthenticatedInternoRoute = AuthenticatedInternoRouteImport.update({
   path: '/interno',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedPortalObrigacoesRoute =
+  AuthenticatedPortalObrigacoesRouteImport.update({
+    id: '/obrigacoes',
+    path: '/obrigacoes',
+    getParentRoute: () => AuthenticatedPortalRoute,
+  } as any)
+const AuthenticatedPortalMensagensRoute =
+  AuthenticatedPortalMensagensRouteImport.update({
+    id: '/mensagens',
+    path: '/mensagens',
+    getParentRoute: () => AuthenticatedPortalRoute,
+  } as any)
+const AuthenticatedPortalInicioRoute =
+  AuthenticatedPortalInicioRouteImport.update({
+    id: '/inicio',
+    path: '/inicio',
+    getParentRoute: () => AuthenticatedPortalRoute,
+  } as any)
+const AuthenticatedPortalDocumentosRoute =
+  AuthenticatedPortalDocumentosRouteImport.update({
+    id: '/documentos',
+    path: '/documentos',
+    getParentRoute: () => AuthenticatedPortalRoute,
+  } as any)
+const AuthenticatedInternoTarefasRoute =
+  AuthenticatedInternoTarefasRouteImport.update({
+    id: '/tarefas',
+    path: '/tarefas',
+    getParentRoute: () => AuthenticatedInternoRoute,
+  } as any)
+const AuthenticatedInternoMensagensRoute =
+  AuthenticatedInternoMensagensRouteImport.update({
+    id: '/mensagens',
+    path: '/mensagens',
+    getParentRoute: () => AuthenticatedInternoRoute,
+  } as any)
+const AuthenticatedInternoDashboardRoute =
+  AuthenticatedInternoDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedInternoRoute,
+  } as any)
+const AuthenticatedInternoClientesRoute =
+  AuthenticatedInternoClientesRouteImport.update({
+    id: '/clientes',
+    path: '/clientes',
+    getParentRoute: () => AuthenticatedInternoRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -64,8 +120,16 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/redefinir-senha': typeof RedefinirSenhaRoute
   '/selecionar-empresa': typeof SelecionarEmpresaRoute
-  '/interno': typeof AuthenticatedInternoRoute
-  '/portal': typeof AuthenticatedPortalRoute
+  '/interno': typeof AuthenticatedInternoRouteWithChildren
+  '/portal': typeof AuthenticatedPortalRouteWithChildren
+  '/interno/clientes': typeof AuthenticatedInternoClientesRoute
+  '/interno/dashboard': typeof AuthenticatedInternoDashboardRoute
+  '/interno/mensagens': typeof AuthenticatedInternoMensagensRoute
+  '/interno/tarefas': typeof AuthenticatedInternoTarefasRoute
+  '/portal/documentos': typeof AuthenticatedPortalDocumentosRoute
+  '/portal/inicio': typeof AuthenticatedPortalInicioRoute
+  '/portal/mensagens': typeof AuthenticatedPortalMensagensRoute
+  '/portal/obrigacoes': typeof AuthenticatedPortalObrigacoesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -73,8 +137,16 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/redefinir-senha': typeof RedefinirSenhaRoute
   '/selecionar-empresa': typeof SelecionarEmpresaRoute
-  '/interno': typeof AuthenticatedInternoRoute
-  '/portal': typeof AuthenticatedPortalRoute
+  '/interno': typeof AuthenticatedInternoRouteWithChildren
+  '/portal': typeof AuthenticatedPortalRouteWithChildren
+  '/interno/clientes': typeof AuthenticatedInternoClientesRoute
+  '/interno/dashboard': typeof AuthenticatedInternoDashboardRoute
+  '/interno/mensagens': typeof AuthenticatedInternoMensagensRoute
+  '/interno/tarefas': typeof AuthenticatedInternoTarefasRoute
+  '/portal/documentos': typeof AuthenticatedPortalDocumentosRoute
+  '/portal/inicio': typeof AuthenticatedPortalInicioRoute
+  '/portal/mensagens': typeof AuthenticatedPortalMensagensRoute
+  '/portal/obrigacoes': typeof AuthenticatedPortalObrigacoesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -84,8 +156,16 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/redefinir-senha': typeof RedefinirSenhaRoute
   '/selecionar-empresa': typeof SelecionarEmpresaRoute
-  '/_authenticated/interno': typeof AuthenticatedInternoRoute
-  '/_authenticated/portal': typeof AuthenticatedPortalRoute
+  '/_authenticated/interno': typeof AuthenticatedInternoRouteWithChildren
+  '/_authenticated/portal': typeof AuthenticatedPortalRouteWithChildren
+  '/_authenticated/interno/clientes': typeof AuthenticatedInternoClientesRoute
+  '/_authenticated/interno/dashboard': typeof AuthenticatedInternoDashboardRoute
+  '/_authenticated/interno/mensagens': typeof AuthenticatedInternoMensagensRoute
+  '/_authenticated/interno/tarefas': typeof AuthenticatedInternoTarefasRoute
+  '/_authenticated/portal/documentos': typeof AuthenticatedPortalDocumentosRoute
+  '/_authenticated/portal/inicio': typeof AuthenticatedPortalInicioRoute
+  '/_authenticated/portal/mensagens': typeof AuthenticatedPortalMensagensRoute
+  '/_authenticated/portal/obrigacoes': typeof AuthenticatedPortalObrigacoesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -97,6 +177,14 @@ export interface FileRouteTypes {
     | '/selecionar-empresa'
     | '/interno'
     | '/portal'
+    | '/interno/clientes'
+    | '/interno/dashboard'
+    | '/interno/mensagens'
+    | '/interno/tarefas'
+    | '/portal/documentos'
+    | '/portal/inicio'
+    | '/portal/mensagens'
+    | '/portal/obrigacoes'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -106,6 +194,14 @@ export interface FileRouteTypes {
     | '/selecionar-empresa'
     | '/interno'
     | '/portal'
+    | '/interno/clientes'
+    | '/interno/dashboard'
+    | '/interno/mensagens'
+    | '/interno/tarefas'
+    | '/portal/documentos'
+    | '/portal/inicio'
+    | '/portal/mensagens'
+    | '/portal/obrigacoes'
   id:
     | '__root__'
     | '/'
@@ -116,6 +212,14 @@ export interface FileRouteTypes {
     | '/selecionar-empresa'
     | '/_authenticated/interno'
     | '/_authenticated/portal'
+    | '/_authenticated/interno/clientes'
+    | '/_authenticated/interno/dashboard'
+    | '/_authenticated/interno/mensagens'
+    | '/_authenticated/interno/tarefas'
+    | '/_authenticated/portal/documentos'
+    | '/_authenticated/portal/inicio'
+    | '/_authenticated/portal/mensagens'
+    | '/_authenticated/portal/obrigacoes'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -185,17 +289,107 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedInternoRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/portal/obrigacoes': {
+      id: '/_authenticated/portal/obrigacoes'
+      path: '/obrigacoes'
+      fullPath: '/portal/obrigacoes'
+      preLoaderRoute: typeof AuthenticatedPortalObrigacoesRouteImport
+      parentRoute: typeof AuthenticatedPortalRoute
+    }
+    '/_authenticated/portal/mensagens': {
+      id: '/_authenticated/portal/mensagens'
+      path: '/mensagens'
+      fullPath: '/portal/mensagens'
+      preLoaderRoute: typeof AuthenticatedPortalMensagensRouteImport
+      parentRoute: typeof AuthenticatedPortalRoute
+    }
+    '/_authenticated/portal/inicio': {
+      id: '/_authenticated/portal/inicio'
+      path: '/inicio'
+      fullPath: '/portal/inicio'
+      preLoaderRoute: typeof AuthenticatedPortalInicioRouteImport
+      parentRoute: typeof AuthenticatedPortalRoute
+    }
+    '/_authenticated/portal/documentos': {
+      id: '/_authenticated/portal/documentos'
+      path: '/documentos'
+      fullPath: '/portal/documentos'
+      preLoaderRoute: typeof AuthenticatedPortalDocumentosRouteImport
+      parentRoute: typeof AuthenticatedPortalRoute
+    }
+    '/_authenticated/interno/tarefas': {
+      id: '/_authenticated/interno/tarefas'
+      path: '/tarefas'
+      fullPath: '/interno/tarefas'
+      preLoaderRoute: typeof AuthenticatedInternoTarefasRouteImport
+      parentRoute: typeof AuthenticatedInternoRoute
+    }
+    '/_authenticated/interno/mensagens': {
+      id: '/_authenticated/interno/mensagens'
+      path: '/mensagens'
+      fullPath: '/interno/mensagens'
+      preLoaderRoute: typeof AuthenticatedInternoMensagensRouteImport
+      parentRoute: typeof AuthenticatedInternoRoute
+    }
+    '/_authenticated/interno/dashboard': {
+      id: '/_authenticated/interno/dashboard'
+      path: '/dashboard'
+      fullPath: '/interno/dashboard'
+      preLoaderRoute: typeof AuthenticatedInternoDashboardRouteImport
+      parentRoute: typeof AuthenticatedInternoRoute
+    }
+    '/_authenticated/interno/clientes': {
+      id: '/_authenticated/interno/clientes'
+      path: '/clientes'
+      fullPath: '/interno/clientes'
+      preLoaderRoute: typeof AuthenticatedInternoClientesRouteImport
+      parentRoute: typeof AuthenticatedInternoRoute
+    }
   }
 }
 
+interface AuthenticatedInternoRouteChildren {
+  AuthenticatedInternoClientesRoute: typeof AuthenticatedInternoClientesRoute
+  AuthenticatedInternoDashboardRoute: typeof AuthenticatedInternoDashboardRoute
+  AuthenticatedInternoMensagensRoute: typeof AuthenticatedInternoMensagensRoute
+  AuthenticatedInternoTarefasRoute: typeof AuthenticatedInternoTarefasRoute
+}
+
+const AuthenticatedInternoRouteChildren: AuthenticatedInternoRouteChildren = {
+  AuthenticatedInternoClientesRoute: AuthenticatedInternoClientesRoute,
+  AuthenticatedInternoDashboardRoute: AuthenticatedInternoDashboardRoute,
+  AuthenticatedInternoMensagensRoute: AuthenticatedInternoMensagensRoute,
+  AuthenticatedInternoTarefasRoute: AuthenticatedInternoTarefasRoute,
+}
+
+const AuthenticatedInternoRouteWithChildren =
+  AuthenticatedInternoRoute._addFileChildren(AuthenticatedInternoRouteChildren)
+
+interface AuthenticatedPortalRouteChildren {
+  AuthenticatedPortalDocumentosRoute: typeof AuthenticatedPortalDocumentosRoute
+  AuthenticatedPortalInicioRoute: typeof AuthenticatedPortalInicioRoute
+  AuthenticatedPortalMensagensRoute: typeof AuthenticatedPortalMensagensRoute
+  AuthenticatedPortalObrigacoesRoute: typeof AuthenticatedPortalObrigacoesRoute
+}
+
+const AuthenticatedPortalRouteChildren: AuthenticatedPortalRouteChildren = {
+  AuthenticatedPortalDocumentosRoute: AuthenticatedPortalDocumentosRoute,
+  AuthenticatedPortalInicioRoute: AuthenticatedPortalInicioRoute,
+  AuthenticatedPortalMensagensRoute: AuthenticatedPortalMensagensRoute,
+  AuthenticatedPortalObrigacoesRoute: AuthenticatedPortalObrigacoesRoute,
+}
+
+const AuthenticatedPortalRouteWithChildren =
+  AuthenticatedPortalRoute._addFileChildren(AuthenticatedPortalRouteChildren)
+
 interface AuthenticatedRouteChildren {
-  AuthenticatedInternoRoute: typeof AuthenticatedInternoRoute
-  AuthenticatedPortalRoute: typeof AuthenticatedPortalRoute
+  AuthenticatedInternoRoute: typeof AuthenticatedInternoRouteWithChildren
+  AuthenticatedPortalRoute: typeof AuthenticatedPortalRouteWithChildren
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
-  AuthenticatedInternoRoute: AuthenticatedInternoRoute,
-  AuthenticatedPortalRoute: AuthenticatedPortalRoute,
+  AuthenticatedInternoRoute: AuthenticatedInternoRouteWithChildren,
+  AuthenticatedPortalRoute: AuthenticatedPortalRouteWithChildren,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
