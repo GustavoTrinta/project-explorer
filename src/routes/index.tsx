@@ -1,26 +1,36 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Navigate } from "@tanstack/react-router";
+import { useAuth } from "@/hooks/use-auth";
+import { useEmpresa } from "@/hooks/use-empresa";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  const { loading, user, vinculos, vinculosLoading, isInterno } = useAuth();
+  const { empresaAtiva } = useEmpresa();
+
+  if (loading || (user && vinculosLoading)) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <p className="text-muted-foreground">Carregando…</p>
+      </div>
+    );
+  }
+  if (!user) return <Navigate to="/login" />;
+  if (vinculos.length === 0) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background px-4">
+        <div className="max-w-md text-center">
+          <h1 className="text-xl font-semibold text-foreground">Sem acesso</h1>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Sua conta ainda não está vinculada a nenhuma empresa. Fale com o administrador.
+          </p>
+        </div>
+      </div>
+    );
+  }
+  if (isInterno) return <Navigate to="/interno/dashboard" />;
+  if (vinculos.length > 1 && !empresaAtiva) return <Navigate to="/selecionar-empresa" />;
+  return <Navigate to="/portal/inicio" />;
 }
