@@ -73,7 +73,7 @@ export function AppSidebar({ area }: { area: "portal" | "interno" }) {
               <button className="mx-2 mb-1 flex items-center gap-2 rounded-md px-2 py-1.5 text-left hover:bg-sidebar-accent group-data-[collapsible=icon]:hidden">
                 <div
                   className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-primary-foreground"
-                  style={{ backgroundColor: empresa?.cor_avatar ?? "#1a1a2e" }}
+                  style={{ backgroundColor: "#1a1a2e" }}
                 >
                   <Building2 className="h-3.5 w-3.5" />
                 </div>
@@ -99,7 +99,7 @@ export function AppSidebar({ area }: { area: "portal" | "interno" }) {
                 >
                   <span
                     className="mr-2 inline-block h-3 w-3 rounded-sm"
-                    style={{ backgroundColor: v.empresa.cor_avatar ?? "#1a1a2e" }}
+                    style={{ backgroundColor: "#1a1a2e" }}
                   />
                   {v.empresa.nome}
                 </DropdownMenuItem>
