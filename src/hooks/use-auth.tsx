@@ -6,7 +6,7 @@ import type { Papel } from "@/integrations/supabase/db-types";
 export interface VinculoEmpresa {
   empresa_id: string;
   papel: Papel;
-  empresa: { id: string; nome: string; cnpj: string | null; cor_avatar: string | null };
+  empresa: { id: string; nome: string; cnpj: string | null };
 }
 
 interface AuthCtx {
@@ -44,8 +44,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const loadVinculos = async (uid: string) => {
     setVinculosLoading(true);
     const { data, error } = await supabase
-      .from("usuario_empresa")
-      .select("empresa_id, papel, empresa:empresas(id, nome, cnpj, cor_avatar)")
+      .from("portal_usuario_empresa")
+      .select("empresa_id, papel, empresa:portal_empresas(id, nome, cnpj)")
       .eq("user_id", uid);
     if (!error && data) {
       setVinculos(data as unknown as VinculoEmpresa[]);
