@@ -317,6 +317,247 @@ export type Database = {
         }
         Relationships: []
       }
+      portal_documentos: {
+        Row: {
+          created_at: string
+          empresa_id: string
+          id: string
+          nome: string
+          status: Database["public"]["Enums"]["portal_status_documento"]
+          storage_path: string
+          tamanho: number | null
+          tipo: string | null
+          updated_at: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          empresa_id: string
+          id?: string
+          nome: string
+          status?: Database["public"]["Enums"]["portal_status_documento"]
+          storage_path: string
+          tamanho?: number | null
+          tipo?: string | null
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          empresa_id?: string
+          id?: string
+          nome?: string
+          status?: Database["public"]["Enums"]["portal_status_documento"]
+          storage_path?: string
+          tamanho?: number | null
+          tipo?: string | null
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "portal_documentos_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "portal_empresas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      portal_empresas: {
+        Row: {
+          cnpj: string | null
+          created_at: string
+          email: string | null
+          id: string
+          nome: string
+          nome_fantasia: string | null
+          status: Database["public"]["Enums"]["portal_status_empresa"]
+          telefone: string | null
+          updated_at: string
+        }
+        Insert: {
+          cnpj?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          nome: string
+          nome_fantasia?: string | null
+          status?: Database["public"]["Enums"]["portal_status_empresa"]
+          telefone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          cnpj?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          nome?: string
+          nome_fantasia?: string | null
+          status?: Database["public"]["Enums"]["portal_status_empresa"]
+          telefone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      portal_mensagens: {
+        Row: {
+          autor_id: string | null
+          canal: Database["public"]["Enums"]["portal_canal"]
+          conteudo: string
+          created_at: string
+          empresa_id: string
+          id: string
+          metadata: Json
+        }
+        Insert: {
+          autor_id?: string | null
+          canal?: Database["public"]["Enums"]["portal_canal"]
+          conteudo: string
+          created_at?: string
+          empresa_id: string
+          id?: string
+          metadata?: Json
+        }
+        Update: {
+          autor_id?: string | null
+          canal?: Database["public"]["Enums"]["portal_canal"]
+          conteudo?: string
+          created_at?: string
+          empresa_id?: string
+          id?: string
+          metadata?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "portal_mensagens_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "portal_empresas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      portal_obrigacoes: {
+        Row: {
+          competencia: string | null
+          created_at: string
+          descricao: string | null
+          empresa_id: string
+          id: string
+          status: Database["public"]["Enums"]["portal_status_obrigacao"]
+          titulo: string
+          updated_at: string
+          vencimento: string | null
+        }
+        Insert: {
+          competencia?: string | null
+          created_at?: string
+          descricao?: string | null
+          empresa_id: string
+          id?: string
+          status?: Database["public"]["Enums"]["portal_status_obrigacao"]
+          titulo: string
+          updated_at?: string
+          vencimento?: string | null
+        }
+        Update: {
+          competencia?: string | null
+          created_at?: string
+          descricao?: string | null
+          empresa_id?: string
+          id?: string
+          status?: Database["public"]["Enums"]["portal_status_obrigacao"]
+          titulo?: string
+          updated_at?: string
+          vencimento?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "portal_obrigacoes_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "portal_empresas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      portal_tarefas: {
+        Row: {
+          created_at: string
+          descricao: string | null
+          empresa_id: string
+          id: string
+          prazo: string | null
+          responsavel_id: string | null
+          status: Database["public"]["Enums"]["portal_status_tarefa"]
+          titulo: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          descricao?: string | null
+          empresa_id: string
+          id?: string
+          prazo?: string | null
+          responsavel_id?: string | null
+          status?: Database["public"]["Enums"]["portal_status_tarefa"]
+          titulo: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          descricao?: string | null
+          empresa_id?: string
+          id?: string
+          prazo?: string | null
+          responsavel_id?: string | null
+          status?: Database["public"]["Enums"]["portal_status_tarefa"]
+          titulo?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "portal_tarefas_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "portal_empresas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      portal_usuario_empresa: {
+        Row: {
+          created_at: string
+          empresa_id: string
+          id: string
+          papel: Database["public"]["Enums"]["portal_papel"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          empresa_id: string
+          id?: string
+          papel: Database["public"]["Enums"]["portal_papel"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          empresa_id?: string
+          id?: string
+          papel?: Database["public"]["Enums"]["portal_papel"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "portal_usuario_empresa_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "portal_empresas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string
@@ -397,9 +638,29 @@ export type Database = {
           similarity: number
         }[]
       }
+      portal_is_admin_interno: { Args: { _user_id: string }; Returns: boolean }
+      portal_is_interno: { Args: { _user_id: string }; Returns: boolean }
+      portal_is_membro_empresa: {
+        Args: { _empresa_id: string; _user_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
       app_role: "admin" | "user"
+      portal_canal: "portal" | "whatsapp" | "email"
+      portal_papel: "admin_interno" | "colaborador_interno" | "cliente"
+      portal_status_documento: "ativo" | "arquivado"
+      portal_status_empresa: "ativa" | "inativa" | "onboarding"
+      portal_status_obrigacao:
+        | "pendente"
+        | "em_andamento"
+        | "entregue"
+        | "atrasada"
+      portal_status_tarefa:
+        | "aberta"
+        | "em_andamento"
+        | "concluida"
+        | "cancelada"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -528,6 +789,22 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      portal_canal: ["portal", "whatsapp", "email"],
+      portal_papel: ["admin_interno", "colaborador_interno", "cliente"],
+      portal_status_documento: ["ativo", "arquivado"],
+      portal_status_empresa: ["ativa", "inativa", "onboarding"],
+      portal_status_obrigacao: [
+        "pendente",
+        "em_andamento",
+        "entregue",
+        "atrasada",
+      ],
+      portal_status_tarefa: [
+        "aberta",
+        "em_andamento",
+        "concluida",
+        "cancelada",
+      ],
     },
   },
 } as const
